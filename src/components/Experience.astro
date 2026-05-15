@@ -1,0 +1,74 @@
+---
+//Experience.astro
+const experiences = [
+  {
+    title: "Intern",
+    company: "MobilityOne",
+    location: "Bukit Jalil",
+    period: "2023.7 - 2023.10",
+    description: [
+        "Developed a tool and website for MobilityOne to check for applications similar to the company's on Google Play and the App Store.",
+        "Designed a website to introduce a specific product for MobilityOne.",
+        "I was offered a full-time position by MobilityOne's CTO and FinTech Manager, which I accepted."
+    ]
+  },
+  {
+    title: "Junior software engineer (Backend)",
+    company: "MobilityOne",
+    location: "Bukit Jalil",
+    period: "2023.11 - 2024.2",
+    description: [
+        "Initially tasked with testing server performance and continuing the projects from the internship period.",
+        "Subsequently took over responsibilities for the web portal for merchants."
+    ]
+  }
+];
+---
+
+<section class="exp-section">
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+        {experiences.map(exp => (
+            <div class="exp-card">
+                <div class="exp-header">
+                    <h3>{exp.title}</h3>
+                    <span class="period">{exp.period}</span>
+                </div>
+                <p class="company">{exp.company} · {exp.location}</p>
+                
+                {/* 这里是核心修改：循环渲染数组 */}
+                <ul class="desc-list">
+                    {exp.description.map(item => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    .exp-section { padding: 4rem 10%; color: #fff; }
+    .section-title { font-size: 2rem; margin-bottom: 2rem; color: #3245ff; }
+    .section-title span { color: #666; font-size: 1rem; }
+    
+    .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+    
+    .exp-card {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid #3245ff;
+        border-radius: 0 12px 12px 0;
+        transition: transform 0.3s ease;
+    }
+    .exp-card:hover {
+        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.06);
+    }
+    
+    .exp-header { display: flex; justify-content: space-between; align-items: center; }
+    .exp-header h3 { color: #bc52ee; margin: 0; }
+    .period { color: #666; font-size: 0.9rem; }
+    .company { color: #3245ff; font-weight: bold; margin: 0.5rem 0; }
+    .desc { color: #b0b0b0; line-height: 1.6; }
+</style>

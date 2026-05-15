@@ -1,0 +1,71 @@
+---
+// Education.astro
+const education = [
+  {
+    school: "Multimedia University",
+    degree: "Bachelor Degree in Computing and Informatics (Data Science)",
+    period: "2024 - 2026 (Expected)",
+    location: "Malaysia",
+  },
+  {
+    school: "Multimedia University",
+    degree: "Diploma in Computing and Informatics",
+    period: "2021 - 2023",
+    location: "Malaysia",
+  }
+];
+---
+
+<section class="edu-section">
+    <h2 class="section-title">Education </h2>
+    <div class="edu-list">
+        {education.map(item => (
+            <div class="edu-item">
+                <div class="edu-header">
+                    <h3>{item.school}</h3>
+                    <span class="period">{item.period}</span>
+                </div>
+                <p class="degree">{item.degree}</p>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    .edu-section { padding: 4rem 10%; color: #fff; }
+    .section-title { font-size: 2rem; margin-bottom: 2rem; color: #3245ff; }
+    .section-title span { color: #666; font-size: 1rem; }
+
+    .edu-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .edu-item {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .edu-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .edu-header h3 { color: #EDEDED; margin: 0; font-size: 1.4rem; }
+    .period { color: #3245ff; font-weight: 600; font-size: 0.9rem; }
+    
+    .degree { color: #bc52ee; margin: 0.5rem 0; font-weight: 500; font-size: 1.1rem; }
+
+    .edu-highlights {
+        margin-top: 0.8rem;
+        padding-left: 1.2rem;
+        list-style: none;
+    }
+    .edu-highlights li {
+        color: #b0b0b0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0.4rem;
+        position: relative;
+    }
+    .edu-highlights li::before {
+        content: "•";
+        color: #3245ff;
+        position: absolute;
+        left: -1.2rem;
+    }
+</style>

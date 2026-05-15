@@ -1,0 +1,96 @@
+---
+// src/components/Projects.astro
+const projects = [
+  {
+    title: "Stock Data Ingestion Engine ",
+    tech: ["Python", "PostgreSQL", "yfinance"],
+    description: "An automated data pipeline built to streamline financial data collection and persistence. It serves as the foundational infrastructure for future quantitative project.",
+    link: "https://github.com/jxxxuan/Finch"
+  },
+  {
+    title: "Anti Phishing Web",
+    tech: ["Python", "Next.js"],
+    description: "Developed an automated monitoring service to detect counterfeit and phishing applications across global app stores. The system streamlines the identification of malicious clones, helping to protect company intellectual property and user security.",
+    link: "https://github.com/jxxxuan/AppGuardian"
+  },
+  {
+    title: "Diploma FYP",
+    tech: ["HTML", "PHP", "css"],
+    description: "My Diploma final year project. A website where users can browse and book maid services, with a simple backend to manage data.",
+    link: "https://github.com/jxxxuan/Diploma_FYP"
+  }
+];
+---
+
+<section class="projects-section" id="projects">
+  <h2 class="section-title">Featured Projects </h2>
+  <div class="projects-grid">
+    {projects.map(project => (
+      <div class="project-card">
+        <div class="card-content">
+          <div class="tech-stack">
+            {project.tech.map(t => <span>{t}</span>)}
+          </div>
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          <a href={project.link} target="_blank" class="project-link">
+            Learn More <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .projects-section { padding: 4rem 10%; color: #fff; }
+  .section-title { font-size: 2rem; margin-bottom: 2rem; color: #3245ff; }
+  .section-title span { color: #666; font-size: 1rem; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .project-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #3245ff;
+    transform: translateY(-5px);
+  }
+
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .tech-stack span {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: rgba(50, 69, 255, 0.1);
+    color: #3245ff;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .project-card h3 { margin: 0 0 0.8rem 0; font-size: 1.25rem; color: #EDEDED; }
+  .project-card p { font-size: 0.9rem; color: #999; line-height: 1.5; margin-bottom: 1.5rem; }
+
+  .project-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: #bc52ee;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .project-link:hover { text-decoration: underline; }
+</style>

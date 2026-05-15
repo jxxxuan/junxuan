@@ -1,3 +1,7 @@
+---
+// Layout.astro
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,18 +10,22 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Jun | Xuan</title>
 	</head>
-	<body>
+	<body class="bg-[#0A0A0A] text-[#EDEDED]">
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
+		padding: 0;
 		width: 100%;
-		height: 100%;
+		background-color: #0A0A0A; /* 直接强制黑色背景 */
+		color: #EDEDED;
+		font-family: 'Inter', 'JetBrains Mono', system-ui, sans-serif;
+		scroll-behavior: smooth;
 	}
 </style>

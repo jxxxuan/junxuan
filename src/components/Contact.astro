@@ -1,0 +1,57 @@
+---
+//Contact.astro
+const contacts = [
+  { platform: 'Email', value: 'work@jxxxuan.com', link: 'mailto:work@jxxxuan.com', icon: '✉️' },
+  { platform: 'GitHub', value: 'github.com/jxxxuan', link: 'https://github.com/jxxxuan', icon: '🐙' },
+  { platform: 'LinkedIn', value: 'Jun Xuan', link: 'https://www.linkedin.com/in/ng-jun-xuan-806211274/', icon: '💼' },
+  { platform: 'Location', value: 'Johor / Kuala Lumpur', link: '', icon: '📍' }
+];
+---
+
+<section class="contact-section">
+  <h2 class="section-title">Get In Touch <span>/ Contact me</span></h2>
+  <div class="contact-grid">
+    {contacts.map(item => (
+      <a href={item.link} target="_blank" class="contact-card">
+        <span class="icon">{item.icon}</span>
+        <div class="info">
+          <span class="label">{item.platform}</span>
+          <span class="value">{item.value}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .contact-section { padding: 4rem 10%; background: #0A0A0A; }
+  .section-title { font-size: 2rem; color: #3245ff; margin-bottom: 2rem; }
+  .section-title span { color: #666; font-size: 1rem; }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .contact-card:hover {
+    border-color: #3245ff;
+    background: rgba(50, 69, 255, 0.05);
+    transform: translateY(-5px);
+  }
+
+  .icon { font-size: 2rem; margin-right: 1rem; }
+  .label { display: block; font-size: 0.8rem; color: #666; }
+  .value { color: #EDEDED; font-weight: 500; }
+</style>

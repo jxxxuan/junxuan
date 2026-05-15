@@ -1,0 +1,121 @@
+---
+// src/components/Mechanical.astro
+const githubBase = "https://github.com/jxxxuan/Solidworks-project";
+const cadWorks = [
+  { 
+    title: "6-DOF Robotics Arm (WIP)", 
+    description: "An iterative 6-Degree-of-Freedom robotic arm project focusing on kinematic chain optimization and joint torque analysis. Developed for modular assembly and lightweight structural integrity using SolidWorks.", 
+    image: "/X-arm.JPG", 
+    link: `${githubBase}/tree/main/X-arm` 
+  },
+  { 
+    title: "Optical Microscope System", 
+    description: "A high-precision 400x optical system designed around a 185mm tube length 40X aluminum objective and a 10X eyepiece. Focused on micron-level thread precision for the focusing mechanism and structural stability.", 
+    image: "microscope.png", // 暂无照片时会自动显示占位符
+    link: `${githubBase}/tree/main/microscope` 
+  },
+  {
+    title: "More Solidworks Projects...",
+    description: "Feel free to explore more my projects in Github",
+    image: "",
+    link: githubBase
+  }
+];
+---
+
+<section class="cad-section">
+  <h2 class="title">Mechanical Design <span>/ Soliworks projects</span></h2>
+  <div class="cad-grid">
+    {cadWorks.map(work => (
+      /* 直接用 <a> 标签作为卡片的根容器 */
+      <a href={work.link} target="_blank" class="cad-card">
+        <div class="img-wrapper">
+          {work.image ? (
+            <img src={work.image} alt={work.title} />
+          ) : (
+            <div class="placeholder">
+              <span class="icon">⚙️</span>
+              <span class="text">Solidworks Repository</span>
+            </div>
+          )}
+        </div>
+        <div class="cad-info">
+          <div class="header-row">
+            <h3>{work.title}</h3>
+            <svg class="external-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </div>
+          <p>{work.description}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .cad-section { padding: 4rem 10%; background: #0A0A0A; }
+  .title { font-size: 2.2rem; color: #3245ff; margin-bottom: 2.5rem; font-weight: 800; }
+  .title span { color: #555; font-size: 1.1rem; font-weight: normal; margin-left: 10px; }
+  
+  .cad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  /* 核心：卡片本身就是 <a> 标签 */
+  .cad-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; /* 去掉默认下划线 */
+    color: inherit;
+  }
+
+  .cad-card:hover {
+    transform: translateY(-12px);
+    border-color: #3245ff;
+    background: rgba(50, 69, 255, 0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .img-wrapper { height: 220px; overflow: hidden; background: #111; display: flex; align-items: center; justify-content: center; }
+  .img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+  .cad-card:hover img { transform: scale(1.08); }
+
+  .placeholder { text-align: center; }
+  .placeholder .icon { font-size: 3rem; display: block; margin-bottom: 10px; opacity: 0.5; }
+  .placeholder .text { 
+    font-size: 1rem; font-weight: bold; 
+    background: linear-gradient(90deg, #3245ff, #bc52ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cad-info { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
+  
+  .header-row { display: flex; justify-content: space-between; align-items: center; }
+  .header-row h3 { margin: 0; color: #fff; font-size: 1.3rem; }
+  .external-icon { color: #666; transition: 0.3s; }
+  .cad-card:hover .external-icon { color: #3245ff; transform: translate(2px, -2px); }
+
+  .cad-info p { color: #999; font-size: 0.95rem; margin: 1rem 0 1.5rem; line-height: 1.6; flex-grow: 1; }
+
+  .github-tag {
+    font-size: 0.8rem;
+    color: #3245ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+  .cad-card:hover .github-tag { opacity: 1; }
+</style>

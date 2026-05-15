@@ -1,0 +1,71 @@
+---
+// Fyp.astro
+---
+
+<section class="fyp-section">
+  <h2 class="title">Final Year Project</h2>
+  
+  <div class="fyp-grid">
+    <div class="fyp-content">
+      <h3>智能代理决策系统</h3>
+      <p class="tech-tags">
+        <span>#RL</span> <span>#CARLA</span> <span>#Transformer</span>
+      </p>
+      <ul>
+        <li>基于 <strong>Transformer</strong> 的特征提取器，处理 LiDAR 与摄像头数据。</li>
+        <li>在 <strong>CARLA</strong> 仿真器中设计多维度 Reward Function。</li>
+        <li>实现 <strong>Zero-shot Transfer</strong>，提高算法的泛化能力。</li>
+      </ul>
+      <a href="https://github.com/your-repo" class="github-btn">View Code on GitHub</a>
+    </div>
+
+    <div class="fyp-media">
+      <img src="/fyp-demo.gif" alt="FYP Demo" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .fyp-section {
+    /* 1. 限制宽度，并且水平居中 */
+    margin: 0 auto;
+    /* 2. 上下留白，不要让它紧贴着上面的 Experience */
+    padding: 4rem 10%; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    color: #fff;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(120deg, #3245ff, #bc52ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .fyp-grid {
+    display: grid;
+    /* 3. 左右比例调整：文字占 1.2 份，图片/GIF 占 1 份 */
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: start; /* 改为 start，防止图片被拉伸得太长 */
+  }
+
+  .fyp-media img {
+    width: 100%;
+    border-radius: 16px;
+    /* 4. 给 Rick 老师加个发光边框 */
+    border: 1px solid rgba(188, 82, 238, 0.3);
+    box-shadow: 0 0 40px rgba(50, 69, 255, 0.15);
+  }
+
+  /* 移动端适配：屏幕窄时变回一列 */
+  @media (max-width: 768px) {
+    .fyp-grid {
+      grid-template-columns: 1fr;
+    }
+    .fyp-section {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>

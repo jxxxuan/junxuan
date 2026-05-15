@@ -1,0 +1,70 @@
+---
+//AboutMe.astro
+const graduationDate = new Date('2026-12-01');
+const daysToGraduation = Math.floor((graduationDate - new Date()) / (1000 * 60 * 60 * 24));
+---
+
+<div id="container">
+	<main>
+        <section class="about-section">
+            <div class="intro">
+                <h1>Hi, I'm <span class="highlight">Jun Xuan</span></h1>
+                <p class="tagline">Final Year Student @ Bachelor Degree in Computer Science (Data Science)</p>
+                
+                <div class="status-chips">
+                    <span class="chip">🎓 Graduation left {daysToGraduation} days</span>
+                    <span class="chip">📍 Based in KL</span>
+                </div>
+            </div>
+
+            <div class="bio">
+                <p>
+                    I am a final-year <strong>Computer Science</strong> student focused on <strong>Reinforcement Learning (RL)</strong> and <strong>Autonomous Driving</strong>. 
+                    Currently, I'm training intelligent agents in CARLA using Transformer models. 
+                    When I'm not coding for robotics, I build <strong>Quantitative Trading</strong> tools to automate my market data and strategies.
+                </p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<style>
+    #container {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        padding-left: 10%; 
+    }
+
+    .about-section {
+        max-width: 800px;
+        color: #fff; /* 假设你用深色背景 */
+    }
+    .highlight {
+        background: linear-gradient(120deg, #3245ff, #bc52ee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+    .chip {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-right: 12px;
+        backdrop-filter: blur(10px);
+    }
+    .bio {
+        margin-top: 2.5rem;
+        line-height: 2;
+        font-size: 1.15rem;
+    }
+
+    /* 关键技巧：把 ** 加粗的部分变成亮色 */
+    .bio strong {
+        color: #3245ff; 
+        font-weight: 700;
+        text-shadow: 0 0 15px rgba(50, 69, 255, 0.3); /* 轻轻的蓝光 */
+    }
+</style>
