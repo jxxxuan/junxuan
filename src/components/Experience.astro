@@ -36,7 +36,7 @@ const experiences = [
                 </div>
                 <p class="company">{exp.company} · {exp.location}</p>
                 
-                {/* 这里是核心修改：循环渲染数组 */}
+                {/* Loop rendering description list */}
                 <ul class="desc-list">
                     {exp.description.map(item => (
                         <li>{item}</li>

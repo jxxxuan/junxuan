@@ -11,7 +11,7 @@ const cadWorks = [
   { 
     title: "Optical Microscope System", 
     description: "A high-precision 400x optical system designed around a 185mm tube length 40X aluminum objective and a 10X eyepiece. Focused on micron-level thread precision for the focusing mechanism and structural stability.", 
-    image: "microscope.png", // 暂无照片时会自动显示占位符
+    image: "microscope.png", // Fallback placeholder will show if image is missing
     link: `${githubBase}/tree/main/microscope` 
   },
   {
@@ -27,7 +27,7 @@ const cadWorks = [
   <h2 class="title">Mechanical Design <span>/ Soliworks projects</span></h2>
   <div class="cad-grid">
     {cadWorks.map(work => (
-      /* 直接用 <a> 标签作为卡片的根容器 */
+      /* Directly use <a> tag as the card container */
       <a href={work.link} target="_blank" class="cad-card">
         <div class="img-wrapper">
           {work.image ? (
@@ -66,7 +66,7 @@ const cadWorks = [
     gap: 30px;
   }
 
-  /* 核心：卡片本身就是 <a> 标签 */
+  /* Core: Card itself is an <a> anchor tag */
   .cad-card {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 20px;
@@ -75,7 +75,7 @@ const cadWorks = [
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
-    text-decoration: none; /* 去掉默认下划线 */
+    text-decoration: none; /* Remove default underline */
     color: inherit;
   }
 

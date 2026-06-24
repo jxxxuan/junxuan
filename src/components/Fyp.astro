@@ -7,29 +7,73 @@
   
   <div class="fyp-grid">
     <div class="fyp-content">
-      <h3>智能代理决策系统</h3>
-      <p class="tech-tags">
-        <span>#RL</span> <span>#CARLA</span> <span>#Transformer</span>
-      </p>
+      <h3>ViT-SAV Autonomous Driving Agent</h3>
       <ul>
-        <li>基于 <strong>Transformer</strong> 的特征提取器，处理 LiDAR 与摄像头数据。</li>
-        <li>在 <strong>CARLA</strong> 仿真器中设计多维度 Reward Function。</li>
-        <li>实现 <strong>Zero-shot Transfer</strong>，提高算法的泛化能力。</li>
+        <li>Combined SAC reinforcement learning algorithm and Vision Transformer</li>
+        <li>Designed multi-dimensional reward functions within the <strong>CARLA</strong> simulator.</li>
+        <li>58% success rate in unsignalized intersection</li>
       </ul>
-      <a href="https://github.com/your-repo" class="github-btn">View Code on GitHub</a>
     </div>
 
     <div class="fyp-media">
-      <img src="/fyp-demo.gif" alt="FYP Demo" />
+      <div class="video-container">
+        <video id="fyp-video" autoplay muted playsinline src="/debug_Town04_ep108199_22-00-09_compat.mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="video-selector">
+        <button class="video-tab active" data-src="/debug_Town04_ep108199_22-00-09_compat.mp4" aria-label="Run 1"></button>
+        <button class="video-tab" data-src="/debug_Town04_ep108299_22-00-14_compat.mp4" aria-label="Run 2"></button>
+        <button class="video-tab" data-src="/debug_Town04_ep108699_22-00-27_compat.mp4" aria-label="Run 3"></button>
+        <button class="video-tab" data-src="/debug_Town04_ep108699_22-00-28_compat.mp4" aria-label="Run 4"></button>
+        <button class="video-tab" data-src="/debug_Town04_ep108699_22-00-30_compat.mp4" aria-label="Run 5"></button>
+      </div>
     </div>
   </div>
 </section>
 
+<script>
+  const tabs = document.querySelectorAll('.video-tab');
+  const video = document.getElementById('fyp-video') as HTMLVideoElement | null;
+
+  let activeIndex = 0;
+
+  function playVideo(index: number) {
+    // Remove active class from all tabs
+    tabs.forEach(t => t.classList.remove('active'));
+    // Add active class to selected tab
+    tabs[index].classList.add('active');
+
+    // Update video source directly on the video element
+    const newSrc = tabs[index].getAttribute('data-src');
+    if (newSrc && video) {
+      video.src = newSrc;
+      video.load();
+      video.play().catch(err => console.error("Video play failed:", err));
+      activeIndex = index;
+    }
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      playVideo(index);
+    });
+  });
+
+  // When a video finishes, automatically advance to the next one
+  if (video) {
+    video.addEventListener('ended', () => {
+      const nextIndex = (activeIndex + 1) % tabs.length;
+      playVideo(nextIndex);
+    });
+  }
+</script>
+
 <style>
   .fyp-section {
-    /* 1. 限制宽度，并且水平居中 */
+    /* 1. Limit width and center horizontally */
     margin: 0 auto;
-    /* 2. 上下留白，不要让它紧贴着上面的 Experience */
+    /* 2. Top and bottom padding, separate from above Experience */
     padding: 4rem 10%; 
     border-top: 1px solid rgba(255, 255, 255, 0.1); 
     color: #fff;
@@ -45,27 +89,131 @@
 
   .fyp-grid {
     display: grid;
-    /* 3. 左右比例调整：文字占 1.2 份，图片/GIF 占 1 份 */
+    /* 3. Horizontal proportion: text occupies 1.2, video occupies 1 */
     grid-template-columns: 1.2fr 1fr;
     gap: 3rem;
-    align-items: start; /* 改为 start，防止图片被拉伸得太长 */
+    align-items: start; /* Set to start to prevent elements from stretching vertically */
   }
 
-  .fyp-media img {
+  .fyp-content h3 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #EDEDED;
+  }
+
+  .tech-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-tags span {
+    font-size: 0.85rem;
+    color: #bc52ee;
+    font-weight: 600;
+  }
+
+  .fyp-content ul {
+    padding-left: 1.2rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+    font-size: 1.05rem;
+  }
+
+  .fyp-content li {
+    margin-bottom: 0.8rem;
+  }
+
+  .fyp-content strong {
+    color: #3245ff;
+    font-weight: 600;
+  }
+
+  .github-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 10px 20px;
+    background: linear-gradient(120deg, #3245ff, #bc52ee);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(50, 69, 255, 0.25);
+  }
+
+  .github-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(188, 82, 238, 0.4);
+  }
+
+  .fyp-media {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .video-container {
     width: 100%;
     border-radius: 16px;
-    /* 4. 给 Rick 老师加个发光边框 */
+    overflow: hidden;
     border: 1px solid rgba(188, 82, 238, 0.3);
     box-shadow: 0 0 40px rgba(50, 69, 255, 0.15);
+    background: #000;
+    line-height: 0;
   }
 
-  /* 移动端适配：屏幕窄时变回一列 */
+  .video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .video-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1.2rem;
+    justify-content: center;
+  }
+
+  .video-tab {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+  }
+
+  .video-tab:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
+  }
+
+  .video-tab.active {
+    background: #3245ff;
+    border-color: #3245ff;
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(50, 69, 255, 0.8);
+  }
+
+  /* Mobile adaptation: switch to single column layout on narrow screens */
   @media (max-width: 768px) {
     .fyp-grid {
       grid-template-columns: 1fr;
+      gap: 2rem;
     }
     .fyp-section {
       padding: 3rem 1.5rem;
+    }
+    .video-selector {
+      justify-content: center;
     }
   }
 </style>
